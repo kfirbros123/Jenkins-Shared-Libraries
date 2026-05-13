@@ -1,0 +1,97 @@
+pipeline {
+    agent any
+    stages {
+        stage('SCM pull') {
+            steps {
+                script {
+                    scmLibrary.SCMpull()
+                }
+            }
+        }
+        stage('Parallel Tests') {
+            parallel {
+                stage('build') {
+                    steps {
+                        script {
+                            docker.deploy("my-app", "1.0.0")
+                        }
+
+
+                    }
+                }
+                stage('tivy test') {
+                    steps {
+                        script {
+                            tivyTest.tivyTest()
+                        }
+   
+                    }
+                }
+                stage('bandit test') {
+                    steps {
+                        script {
+                            banditTest.banditTest()
+                        }
+
+                    }
+                }
+                stage('sonarqube') {
+                    steps {
+                        script {
+                            sonarqubeLibrary.sonarqubeScan("my-app-key", "My App")
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Parallel 2') {
+            parallel {
+                stage('docker push') {
+                    steps {
+                        script {
+                            docker.pushToDockerHub("my-app", "1.0.0")
+                        }
+
+
+                    }
+                }
+                stage('unit test') {
+                    steps {
+                        script {
+                            tivyTest.tivyTest()
+                        }
+   
+                    }
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    k8Library.deployToK8s("my-app", "1.0.0")
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    qaTest.qaTest()
+                }
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                 scmLibrary.cleanup()
+            }
+            script {
+                emailLibrary.sendEmail("team@example.com", "Build Completed", "The build has been completed successfully.")
+            }
+        }
+    }
+}
+
+
+
