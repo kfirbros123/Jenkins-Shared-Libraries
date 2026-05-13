@@ -1,4 +1,4 @@
-def deploy(String name, String version) {
+def dockerBuild(String name, String version) {
     echo "Now deploying the application: ${name}, version: ${version}..."
 }
 

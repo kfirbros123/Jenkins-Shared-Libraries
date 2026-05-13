@@ -15,7 +15,7 @@ pipeline {
                 stage('build') {
                     steps {
                         script {
-                            docker.dockerBuild("my-app", "1.0.0")
+                            dockerImage.dockerBuild("my-app", "1.0.0")
                         }
 
 
@@ -52,7 +52,7 @@ pipeline {
                 stage('docker push') {
                     steps {
                         script {
-                            docker.pushToDockerHub("my-app", "1.0.0")
+                            dockerImage.pushToDockerHub("my-app", "1.0.0")
                         }
 
 
