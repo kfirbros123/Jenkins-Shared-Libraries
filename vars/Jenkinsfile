@@ -6,7 +6,7 @@ pipeline {
         stage('SCM pull') {
             steps {
                 script {
-                    scmLibrary.SCMpull()
+                    scmLibrary.scmPull()
                 }
             }
         }
@@ -86,7 +86,7 @@ pipeline {
     post {
         always {
             script {
-                 scmLibrary.cleanup()
+                 cleanUp.cleanUp()
             }
             script {
                 emailLibrary.sendEmail("team@example.com", "Build Completed", "The build has been completed successfully.")
