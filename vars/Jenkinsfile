@@ -15,7 +15,7 @@ pipeline {
                 stage('build') {
                     steps {
                         script {
-                            docker.deploy("my-app", "1.0.0")
+                            docker.dockerBuild("my-app", "1.0.0")
                         }
 
 
