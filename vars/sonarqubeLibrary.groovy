@@ -6,11 +6,11 @@ def sonarqubeScan(String projectKey, String projectName) {
 
 def sonarCreateProject(String projectKey) {
         echo "*** blabla"
-        echo "TOKEN=${env.SONAR_AUTH_TOKEN ? 'exists' : 'missing'}"
+        echo "TOKEN=${env.SONAR_TOKEN ? 'exists' : 'missing'}"
         withSonarQubeEnv('SonarQubeScanner') {
             echo "creating project..."
             sh """
-                curl -s -u ${env.SONAR_AUTH_TOKEN}: \
+                curl -s -u ${env.SONAR_TOKEN}: \
                -X POST "${env.SONAR_HOST_URL}/api/projects/create" \
                -d "project=${projectKey}&name=${projectKey}"
             """
