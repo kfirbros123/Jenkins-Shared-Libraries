@@ -6,6 +6,7 @@ def sonarqubeScan(String projectKey, String projectName) {
 
 def sonarCreateProject(String projectKey) {
         echo "*** blabla"
+        echo "TOKEN=${env.SONAR_AUTH_TOKEN ? 'exists' : 'missing'}"
         withSonarQubeEnv('SonarQubeScanner') {
             echo "creating project..."
             sh """
