@@ -89,7 +89,6 @@ pipeline {
         always {
             script {
                  cleanUp.cleanUp()
-                 scmLibrary.scmCheckOut()
             }
             script {
                 emailLibrary.sendEmail("team@example.com", "Build Completed", "The build has been completed successfully.")
