@@ -8,3 +8,4 @@ def scmCheckOut() {
     echo "checking out..."
     scm checkout
     echo "Checked Out"
+}
