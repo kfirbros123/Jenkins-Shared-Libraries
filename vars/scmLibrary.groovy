@@ -6,6 +6,6 @@ def scmPull() {
 
 def scmCheckOut() {
     echo "checking out..."
-    scm checkout
+    checkout scm
     echo "Checked Out"
 }
