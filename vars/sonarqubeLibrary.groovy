@@ -5,6 +5,7 @@ def sonarqubeScan(String projectKey, String projectName) {
 }
 
 def sonarCreateProject(String projectKey) {
+        echo "*** blabla"
         withSonarQubeEnv('SonarQubeScanner') {
             echo "creating project..."
             sh """
