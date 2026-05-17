@@ -41,6 +41,8 @@ pipeline {
                     steps {
                         script {
                             sonarqubeLibrary.sonarqubeScan("my-app-key", "My App")
+                            sonarqubeLibrary.sonarCreateProject("shared-libraries-lab")
+                            sonarqubeLibrary.sonarLocalScan()
                         }
                     }
                 }
@@ -94,6 +96,3 @@ pipeline {
         }
     }
 }
-
-
-
