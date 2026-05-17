@@ -3,6 +3,7 @@ def sonarqubeScan(String projectKey, String projectName) {
     //sh "exit 0" // Or exit 1 to breake the pipeline
     // Mock SonarQube scan logic here
 }
+
 def sonarCreateProject(String projectKey) {
         withSonarQubeEnv('SonarQubeScanner') {
             sh """
